@@ -1,18 +1,38 @@
 <template>
     <div class="orders">
-        <div >
-            <ul class="ordersList" v-for="order in orders" v-bind:key="order.id">
-                <li>
-                    id: {{order.id}}. Brand: {{order.brand}}. Model: {{order.model}}. Price: {{order.price}}.
-                    Status: {{order.status}}. Edit status:
-                    <select v-on:change="getSelect(order.id)" v-model="selected.key" class="form-control" id="status">
-                        <option value="sent">Send</option>
-                        <option value="received">Get</option>
-                    </select>
-                </li>
-            </ul>
+        <div class="col-md-offset-3 col-md-7 ">
+            <router-link to="/"><h6>Main page</h6></router-link>
+            <table class="table" v-for="order in orders">
+                <thead>
+                <tr class="active">
+                    <td>Value</td>
+                    <td>Car</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="success">
+                    <td>Brand</td>
+                    <td>{{order.brand}}</td>
+                </tr>
+                <tr class="success">
+                    <td>Model</td>
+                    <td>{{order.model}}</td>
+                </tr>
+                <tr class="success">
+                    <td>Color</td>
+                    <td>{{order.color}}</td>
+                </tr>
+                <tr class="success">
+                    <td>Pricr</td>
+                    <td>{{order.price}}</td>
+                </tr>
+                <tr class="success">
+                    <td>Status</td>
+                    <td>{{order.status}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <router-link to="/"><button type="submit" class="btn btn-primary">Back</button></router-link>
     </div>
 </template>
 
@@ -34,23 +54,6 @@
             }
         },
         methods: {
-            getSelect: function(idOrder){
-                var self = this
-                axios.put('http://192.168.0.15/~user12/rest/client/api/order/', {
-                            id: idOrder,
-                            status: self.selected.key
-                        }, this.config)
-                        .then(function (response) {
-                             console.log(response.data)
-                            self.selected.key = ''
-                            self.getOrders()
-
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                        });
-
-            },
             getIdUser: function(){
                 var self = this
                 if (localStorage['id'])
@@ -63,26 +66,18 @@
             getOrders: function()
             {
                 var self = this
-                // console.log(self.id_user)
                 if (!self.id_user)
                 {
                     return false
                 }
                 axios.get('http://192.168.0.15/~user12/rest/client/api/order/' + self.id_user)
-                        .then(function (response) {
-                             console.log(response.data);
-                            if (Array.isArray(response.data))
-                            {
-                                self.orders = response.data
-                            }
-                            else{
-                                alert(response.data)
-                            }
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-            }
+                    .then(function (response) {
+                        if (Array.isArray(response.data))
+                        {
+                            self.orders = response.data
+                        }
+                    })
+            },
         },
         created(){
             this.getIdUser()
@@ -92,5 +87,7 @@
 </script>
 
 <style scoped>
-   
+    h6{
+        text-align: center;
+    }
 </style>
