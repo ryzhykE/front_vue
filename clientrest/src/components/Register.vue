@@ -72,7 +72,7 @@
                         var data = new FormData()
                         data.append('login', self.login)
                         data.append('password', self.password)
-                        axios.post('http://rest/user6/rest_task1/client/api/auth/', data, this.config)
+                        axios.post('http://192.168.0.15/~user12/rest/client/api/auth/', data, this.config)
                                 .then(function (response) {
                                     self.success = response.data;
                                     self.error = response.data;

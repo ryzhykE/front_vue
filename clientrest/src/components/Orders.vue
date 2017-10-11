@@ -36,7 +36,7 @@
         methods: {
             getSelect: function(idOrder){
                 var self = this
-                axios.put('http://rest/user6/rest_task1/client/api/orders/', {
+                axios.put('http://192.168.0.15/~user12/rest/client/api/order/', {
                             id: idOrder,
                             status: self.selected.key
                         }, this.config)
@@ -68,9 +68,9 @@
                 {
                     return false
                 }
-                axios.get('http://rest/user6/rest_task1/client/api/orders/' + self.id_user)
+                axios.get('http://192.168.0.15/~user12/rest/client/api/order/' + self.id_user)
                         .then(function (response) {
-                            // console.log(response.data);
+                             console.log(response.data);
                             if (Array.isArray(response.data))
                             {
                                 self.orders = response.data
@@ -91,10 +91,6 @@
     }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    #status{
-        width: 10%;
-        display: inline;
-    }
+   
 </style>

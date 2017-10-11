@@ -8,7 +8,7 @@
             <div v-if="checkUser == ''">
                 <div class="form-group">
                     <div class="col-md-2">
-                        <router-link to="/register"><a class="navbar-brand" href="http://localhost:8080/#/register/">Register</a></router-link>
+                        <router-link to="/register">Register</router-link>
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +63,7 @@
                 self.error = ''
                 if (self.login && self.password)
                 {
-                    axios.put('http://rest/user6/rest_task1/client/api/auth/', {
+                    axios.put('http://192.168.0.15/~user12/rest/client/api/auth/', {
                                 login: self.login,
                                 password: self.password
                             }, this.config)
@@ -101,16 +101,9 @@
                 {
                     self.id = JSON.parse(localStorage['id'])
                     self.hash = JSON.parse(localStorage['hash'])
-                    axios.get('http://rest/user6/rest_task1/client/api/auth/' + self.id)
+                    axios.get('http://192.168.0.15/~user12/rest/client/api/auth/' + self.id)
                             .then(function (response) {
-                                if (response.data !== false)
-                                {
-                                    if (self.hash === response.data)
-                                    {
-                                        self.checkUser = 1;
-                                        return true
-                                    }
-                                }
+                                self.checkUser = 1;
                             })
                             .catch(function (error) {
                                 console.log(error);

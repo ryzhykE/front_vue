@@ -96,7 +96,7 @@
                 }else {
                     data.append('id_car', self.car.id);
                     data.append('id_user', self.id_user);
-                    axios.post('http://rest/user6/rest_task1/client/api/order/', data, self.config)
+                    axios.post('http://192.168.0.15/~user12/rest/client/api/order/', data, self.config)
                             .then(function (response) {
                                 self.success = 'success'
                             })

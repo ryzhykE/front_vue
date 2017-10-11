@@ -77,7 +77,7 @@
             </div>
             <div class = "col-xs-6 col-md-5">
                 <h6>Filter Car</h6>
-                <carSingle   v-for="car in filteredProducts" :car="car"></carSingle>
+                <carSingle   v-for="car in filteredProducts" :car="car" :checkUser="checkUser"></carSingle>
             </div>
             <div class = "col-xs-6 col-md-4">
                 <h6>One Car</h6>
@@ -220,7 +220,7 @@
         methods: {
             getAll: function(){
                 var self = this
-                axios.get('http://rest/user6/rest_task1/client/api/Cars/', this.config)
+                axios.get('http://192.168.0.15/~user12/rest/client/api/Cars/', this.config)
                         .then(function (response) {
                             if (response.status == 200) {
                                 self.cars = response.data;
@@ -232,17 +232,14 @@
             },
             getCheck: function(){
                 var self = this
-                if (localStorage['id'] && localStorage['hash'] && localStorage['login'])
+                if (localStorage['id'] && localStorage['hash'])
                 {
                     self.checkUser = 1
-                }
-                else{
-                    self.checkUser = ''
                 }
             },
             getOneCar: function(id){
                 var self = this
-                axios.get('http://rest/user6/rest_task1/client/api/Cars/' + id, this.config)
+                axios.get('http://192.168.0.15/~user12/rest/client/api/Cars/' + id, this.config)
                         .then(function (response) {
                             if (response.status == 200) {
                                 self.car = response.data;
@@ -320,6 +317,8 @@
         },
         created(){
             this.getAll()
+            this.getCheck()
+           
         },
     components:{
         'carSingle': CarSingle,

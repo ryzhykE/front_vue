@@ -4,6 +4,7 @@ import Main from '@/components/Main'
 import Cars from '@/components/Cars'
 import Register from '@/components/Register'
 import Order from '@/components/Order'
+import Orders from '@/components/Orders'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/order/:obj',
       name: 'order',
       component: Order
+    },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component: Orders
     },
 
 
