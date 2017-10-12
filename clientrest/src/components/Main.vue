@@ -239,7 +239,7 @@
             },
             getOneCar: function(id){
                 var self = this
-                axios.get('http://192.168.0.15/~user12/rest/client/api/Cars/' + id, this.config)
+                axios.get('http://192.168.0.15/~user12/rest/client/api/Cars/' + id +'/', this.config)
                         .then(function (response) {
                             if (response.status == 200) {
                                 self.car = response.data;
